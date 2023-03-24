@@ -37,10 +37,19 @@ const linkedList = () => {
             x++
         }
         return pointer
-
     }
 
-    return{prepend, append, get head(){return head}, get size(){return size}, tail, at}
+    const pop = () => {
+        let pointer = head
+        let previousPointer
+        while(pointer.nextNode !== null){
+            previousPointer = pointer
+            pointer = pointer.nextNode
+        }
+        previousPointer.nextNode = null
+    }
+
+    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop}
 }
 
 const node = (value = null, nextNode = null) => {
@@ -51,4 +60,6 @@ let list = linkedList()
 list.prepend(4)
 list.prepend(2)
 list.append(6)
-console.log(list.at(2))
+console.log(list.tail())
+console.log(list.pop())
+console.log(list.tail())
