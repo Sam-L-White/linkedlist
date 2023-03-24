@@ -49,7 +49,17 @@ const linkedList = () => {
         previousPointer.nextNode = null
     }
 
-    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop}
+    const contains = (value) => {
+        for(x = 0; x < size; x++){
+            let currentNode = at(x)
+            if(currentNode.value === value){
+                return true
+            }
+        }
+        return false
+    }
+
+    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop, contains}
 }
 
 const node = (value = null, nextNode = null) => {
@@ -60,6 +70,5 @@ let list = linkedList()
 list.prepend(4)
 list.prepend(2)
 list.append(6)
-console.log(list.tail())
-console.log(list.pop())
-console.log(list.tail())
+console.log(list.contains(2))
+console.log(list.contains(5))
