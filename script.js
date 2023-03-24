@@ -4,7 +4,7 @@ const linkedList = () => {
 
     const prepend = (value) => {
         head = node(value, head)
-        size ++
+        size++
     }
 
     const append = (value) => {
@@ -96,7 +96,31 @@ const linkedList = () => {
         previousPointer.nextNode = newNode
     }
 
-    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop, contains, find, toString, insertAt}
+    const removeAt = (index) => {
+        let x = 0
+        let pointer = head
+        let previousPointer
+        if(index === 0){
+
+            head = pointer.nextNode
+
+        } else if(index > (size - 1) || index < 0) {
+
+            console.log("Index not contained in list")
+
+        } else {
+
+            while(x < index){
+                previousPointer = pointer
+                pointer = pointer.nextNode
+                x++
+            }
+            previousPointer.nextNode = pointer.nextNode
+        }
+        
+    }
+
+    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop, contains, find, toString, insertAt, removeAt}
 }
 
 const node = (value = null, nextNode = null) => {
@@ -110,7 +134,6 @@ list.prepend(4)
 list.prepend(2)
 
 console.log(list.toString())
-list.insertAt(10, 4)
+list.removeAt(0)
 console.log(list.toString())
-list.insertAt(12, 2)
-console.log(list.toString())
+list.removeAt(-6)
