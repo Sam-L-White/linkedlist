@@ -59,7 +59,20 @@ const linkedList = () => {
         return false
     }
 
-    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop, contains}
+    const find = (value) => {
+        if(contains(value)){
+            for(x = 0; x < size; x++){
+                let currentNode = at(x)
+                if(currentNode.value === value){
+                    return x
+                }
+            }
+        } else {
+            return null
+        }
+    }
+
+    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop, contains, find}
 }
 
 const node = (value = null, nextNode = null) => {
@@ -70,5 +83,4 @@ let list = linkedList()
 list.prepend(4)
 list.prepend(2)
 list.append(6)
-console.log(list.contains(2))
-console.log(list.contains(5))
+console.log(list.find(4))
