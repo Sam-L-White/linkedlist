@@ -29,7 +29,18 @@ const linkedList = () => {
         return pointer
     }
 
-    return{prepend, append, get head(){return head}, get size(){return size}, tail}
+    const at = (index) => {
+        let x = 0
+        let pointer = head
+        while(x < index){
+            pointer = pointer.nextNode
+            x++
+        }
+        return pointer
+
+    }
+
+    return{prepend, append, get head(){return head}, get size(){return size}, tail, at}
 }
 
 const node = (value = null, nextNode = null) => {
@@ -37,7 +48,7 @@ const node = (value = null, nextNode = null) => {
 }
 
 let list = linkedList()
-list.prepend(2)
 list.prepend(4)
+list.prepend(2)
 list.append(6)
-console.log(list.tail())
+console.log(list.at(2))
