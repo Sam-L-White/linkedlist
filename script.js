@@ -72,7 +72,18 @@ const linkedList = () => {
         }
     }
 
-    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop, contains, find}
+    const toString = () => {
+        let outputString = ""
+        let pointer = head
+        while(pointer.nextNode !== null){
+            outputString += `(${pointer.value}) -> `
+            pointer = pointer.nextNode
+        }
+        outputString += `(${pointer.value}) -> null`
+        return outputString
+    }
+
+    return{prepend, append, get head(){return head}, get size(){return size}, tail, at, pop, contains, find, toString}
 }
 
 const node = (value = null, nextNode = null) => {
@@ -84,3 +95,4 @@ list.prepend(4)
 list.prepend(2)
 list.append(6)
 console.log(list.find(4))
+console.log(list.toString())
