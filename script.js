@@ -2,12 +2,12 @@ const linkedList = () => {
     let head = null
     let size = 0
 
-    const prepend = (value) =>{
+    const prepend = (value) => {
         head = node(value, head)
         size ++
     }
 
-    const append = (value) =>{
+    const append = (value) => {
         if(head === null){
             head = node(value)
             size++
@@ -21,7 +21,15 @@ const linkedList = () => {
         }
     }
 
-    return{prepend, append, get head(){return head}, get size(){return size}}
+    const tail = () => {
+        let pointer = head
+        while(pointer.nextNode !== null){
+            pointer = pointer.nextNode
+        }
+        return pointer
+    }
+
+    return{prepend, append, get head(){return head}, get size(){return size}, tail}
 }
 
 const node = (value = null, nextNode = null) => {
@@ -32,4 +40,4 @@ let list = linkedList()
 list.prepend(2)
 list.prepend(4)
 list.append(6)
-console.log(list.size)
+console.log(list.tail())
